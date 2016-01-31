@@ -24,6 +24,18 @@ repositories {
 	mavenCentral()
 }
 
+task sqlStartup(type: Exec) {
+    //commandLine 'java', '-jar', 'build-libs/lombok.jar', 'delombok', 'src', '-d', 'build/src-delomboked
+    commandLine 'mysql.server', 'start'
+}
+
+task sqlStop(type: Exec) {
+    commandLine 'mysql.server', 'stop'
+}
+
+project.tasks.testClasses.dependsOn project.tasks.sqlStartup
+project.tasks.build.finalizedBy project.tasks.sqlStop
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
 	compile("org.springframework.boot:spring-boot-starter-actuator")
@@ -43,3 +55,4 @@ dependencies {
 task wrapper(type: Wrapper) {
 	gradleVersion = '2.9'
 }
+
