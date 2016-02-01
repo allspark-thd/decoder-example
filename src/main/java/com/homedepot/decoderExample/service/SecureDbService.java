@@ -1,24 +1,21 @@
 package com.homedepot.decoderExample.service;
 
-import com.homedepot.decoderExample.config.DataSourceConfig;
 import credentialdecoder.CredentialDecoder;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.json.JSONObject;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SecureDbService {
 
-    @Autowired
-    private DataSourceConfig dataSourceConfig;
-
+    private JSONObject dataSourceProps;
     private CredentialDecoder decoderRing;
     private Logger log = Logger.getLogger(SecureDbService.class);
 
-    public SecureDbService(CredentialDecoder decoderRing, DataSourceConfig dataSourceConfig) {
+    public SecureDbService(CredentialDecoder decoderRing, JSONObject dataSourceProps) {
         this.decoderRing = decoderRing;
-        this.dataSourceConfig = dataSourceConfig;
+        this.dataSourceProps = dataSourceProps;
     }
 
     public SecureDbService() {
@@ -28,18 +25,18 @@ public class SecureDbService {
     public DataSourceBuilder configureDataSourceBuilder() {
 
         DataSourceBuilder dataSourceBuilder = null;
-        if (dataSourceConfig !=null) {
+        if (dataSourceProps !=null) {
             try {
 
                 log.info(decoderRing.getPassword());
-                log.info(dataSourceConfig.getDriver());
-                log.info(dataSourceConfig.getUrl());
-                log.info(dataSourceConfig.getUser());
+                log.info(dataSourceProps.getString("driver"));
+                log.info(dataSourceProps.getString("user"));
+                log.info(dataSourceProps.getString("url"));
 
                 dataSourceBuilder = DataSourceBuilder.create();
-                dataSourceBuilder.driverClassName(dataSourceConfig.getDriver());
-                dataSourceBuilder.url(dataSourceConfig.getUrl());
-                dataSourceBuilder.username(dataSourceConfig.getUser());
+                dataSourceBuilder.driverClassName(dataSourceProps.getString("driver"));
+                dataSourceBuilder.url(dataSourceProps.getString("user"));
+                dataSourceBuilder.username(dataSourceProps.getString("url"));
                 dataSourceBuilder.password(decoderRing.getPassword());
 
             } catch (Exception e) {

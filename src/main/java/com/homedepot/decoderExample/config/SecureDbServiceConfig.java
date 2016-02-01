@@ -2,6 +2,7 @@ package com.homedepot.decoderExample.config;
 
 import com.homedepot.decoderExample.service.SecureDbService;
 import credentialdecoder.CredentialDecoder;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,10 +17,10 @@ public class SecureDbServiceConfig {
     CredentialDecoder decoderRing;
 
     @Autowired
-    DataSourceConfig dataSourceConfig;
+    JSONObject dataSourceProps;
 
     @Bean
     SecureDbService secureDbDemo() {
-        return new SecureDbService(decoderRing, dataSourceConfig);
+        return new SecureDbService(decoderRing, dataSourceProps);
     }
 }
