@@ -1,4 +1,4 @@
-package com.homedepot;
+package com.homedepot.decoderExample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

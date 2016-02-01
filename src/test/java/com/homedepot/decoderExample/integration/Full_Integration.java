@@ -1,4 +1,4 @@
-package com.homedepot.integration;
+package com.homedepot.decoderExample.integration;
 
 import org.junit.Test;
 

@@ -4,16 +4,19 @@ buildscript {
 	}
 	repositories {
 		mavenCentral()
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework.build.gradle:propdeps-plugin:0.0.7")
     }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-
+apply plugin: 'propdeps'
+apply plugin: 'propdeps-idea'
 
 jar {
 	baseName = 'credential-decoder'
@@ -25,13 +28,18 @@ repositories {
 }
 
 task sqlStartup(type: Exec) {
-    //commandLine 'java', '-jar', 'build-libs/lombok.jar', 'delombok', 'src', '-d', 'build/src-delomboked
     commandLine 'mysql.server', 'start'
 }
 
 task sqlStop(type: Exec) {
     commandLine 'mysql.server', 'stop'
 }
+
+dependencies {
+	optional "org.springframework.boot:spring-boot-configuration-processor"
+}
+
+compileJava.dependsOn(processResources)
 
 project.tasks.testClasses.dependsOn project.tasks.sqlStartup
 project.tasks.build.finalizedBy project.tasks.sqlStop

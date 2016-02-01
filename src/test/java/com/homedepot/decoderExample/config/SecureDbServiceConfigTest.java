@@ -1,10 +1,9 @@
-package com.homedepot.config;
+package com.homedepot.decoderExample.config;
 
-import com.homedepot.service.SecureDbService;
+import com.homedepot.decoderExample.service.SecureDbService;
 import org.junit.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertNull;
 
 public class SecureDbServiceConfigTest {
 
@@ -17,6 +16,6 @@ public class SecureDbServiceConfigTest {
     public void it_handles_null_vcapServices() {
         SecureDbServiceConfig config = new SecureDbServiceConfig();
         SecureDbService dbDemo = config.secureDbDemo();
-        assertThat(dbDemo.configureDataSourceBuilder() == null, is(true));
+        assertNull(dbDemo.configureDataSourceBuilder());
     }
 }

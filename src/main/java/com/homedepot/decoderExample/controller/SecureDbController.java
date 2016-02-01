@@ -1,6 +1,6 @@
-package com.homedepot.controller;
+package com.homedepot.decoderExample.controller;
 
-import com.homedepot.service.SecureDbService;
+import com.homedepot.decoderExample.service.SecureDbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

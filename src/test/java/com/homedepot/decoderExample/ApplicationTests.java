@@ -1,4 +1,4 @@
-package com.homedepot;
+package com.homedepot.decoderExample;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

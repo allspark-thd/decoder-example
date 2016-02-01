@@ -1,0 +1,27 @@
+---
+spring:
+
+database:
+  url: jdbc:mariadb://localhost;AUTO_RECONNECT=TRUE
+  user: dummy
+  driver: org.mariadb.jdbc.Driver
+creds:
+  base64: "{ 'credentials': { 'password': 'c3ZjLXBhc3N3b3Jk' } }"
+
+---
+spring:
+  profiles: cloud
+
+creds:
+  app_id: ${vcap.services.credentials.app}
+  user_id: ${vcap.services.credentials.user}
+  vault_url: ${vcap.services.credentials.vault_url}
+  login_path: ${vcap.services.credentials.login_path}
+  creds_path: ${vcap.services.credentials.creds_path}
+
+database:
+  url: ${vcap.services.database.url}
+  user: ${vcap.services.database.user}
+  driver: ${vcap.services.database.driver}
+
+

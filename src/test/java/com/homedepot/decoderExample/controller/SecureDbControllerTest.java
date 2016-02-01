@@ -1,4 +1,4 @@
-package com.homedepot.controller;
+package com.homedepot.decoderExample.controller;
 
 import org.junit.Test;
 

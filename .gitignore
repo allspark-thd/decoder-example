@@ -11,6 +11,8 @@ gradle-app.setting
 .gradletasknamecache
 
 # idea
+*.ipr
+*.iws
 *.iml
 idea/
 scratch

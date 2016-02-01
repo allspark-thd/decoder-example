@@ -1,4 +1,4 @@
-package com.homedepot.config;
+package com.homedepot.decoderExample.config;
 
 import credentialdecoder.CredentialDecoder;
 import credentialdecoder.vault.VaultCredentialDecoder;
