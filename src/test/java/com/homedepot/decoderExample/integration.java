@@ -1,4 +1,4 @@
-package com.homedepot.decoderExample.integration;
+package com.homedepot.decoderExample;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
  *
  */
 
-public class Full_Integration {
+public class Integration {
     @Test
     public void testConnect() throws Exception {
 
