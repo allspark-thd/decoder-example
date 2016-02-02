@@ -3,6 +3,7 @@ package com.homedepot.decoderExample.service;
 import com.homedepot.decoderExample.config.DataSourceConfig;
 import credentialdecoder.vault.VaultCredentialDecoder;
 import org.json.JSONObject;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -11,8 +12,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
 public class SecureDbServiceTest {
 
@@ -46,7 +48,15 @@ public class SecureDbServiceTest {
     @Test
     public void should_Return_Null_When_Given_Invalid_Creds() {
         SecureDbService secureDbNull = new SecureDbService(vaultCredentialDecoder);
-        assertNull(secureDbNull.configureDataSourceBuilder());
+        try {
+            secureDbNull.configureDataSourceBuilder();
+            fail("expected error to be thrown");
+        } catch (RuntimeException re) {
+            Assert.assertThat(
+                    re.getMessage(),
+                    containsString("Unable to configure")
+            );
+        }
     }
 
 }
