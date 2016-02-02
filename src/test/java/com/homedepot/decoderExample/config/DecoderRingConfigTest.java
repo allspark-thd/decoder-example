@@ -11,7 +11,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.fail;
 
 
-public class Base64DecoderRingConfigTest {
+public class DecoderRingConfigTest {
 
     private String goodString = "{ 'credentials': { 'password': 'c3ZjLXBhc3N3b3Jk' } }";
 

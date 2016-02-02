@@ -16,7 +16,7 @@ public class VaultDecoderRingConfig {
     private String app_id, user_id, vault_url, login_path, creds_path;
 
     @Bean
-    CredentialDecoder newDecoderRing() {
+    public CredentialDecoder newDecoderRing() {
 
         JSONObject credentials = new JSONObject();
 

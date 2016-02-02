@@ -16,7 +16,7 @@ public class Base64DecoderRingConfig {
     private String base64;
 
     @Bean
-    CredentialDecoder newDecoderRing() {
+    public CredentialDecoder newDecoderRing() {
         JSONObject credentials = new JSONObject(getBase64());
         Base64CredentialDecoder decoderRing = new Base64CredentialDecoder(credentials);
         return decoderRing;

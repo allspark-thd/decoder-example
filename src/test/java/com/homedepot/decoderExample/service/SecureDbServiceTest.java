@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class SecureDbServiceVaultTest {
+public class SecureDbServiceTest {
 
     @Mock
     private VaultCredentialDecoder vaultCredentialDecoder;
@@ -32,7 +32,7 @@ public class SecureDbServiceVaultTest {
         JSONObject validResponse = new JSONObject("{ password: 'password'}");
 
         Mockito.when(vaultCredentialDecoder.getPassword()).thenReturn(validResponse.toString());
-        Mockito.when(dataSourceConfig.getUrl()).thenReturn("jdbc:mariadb://localhost;AUTO_RECONNECT=TRUE");
+        Mockito.when(dataSourceConfig.getUrl()).thenReturn("jdbc:mariadb://localhost:3306/mysql");
         Mockito.when(dataSourceConfig.getUser()).thenReturn("dummy");
         Mockito.when(dataSourceConfig.getDriver()).thenReturn("org.mariadb.jdbc.Driver");
     }

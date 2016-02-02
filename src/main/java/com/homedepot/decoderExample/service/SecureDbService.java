@@ -37,8 +37,8 @@ public class SecureDbService {
 
                 dataSourceBuilder = DataSourceBuilder.create();
                 dataSourceBuilder.driverClassName(dataSourceConfig.getDriver());
-                dataSourceBuilder.url(dataSourceConfig.getUser());
-                dataSourceBuilder.username(dataSourceConfig.getUrl());
+                dataSourceBuilder.url(dataSourceConfig.getUrl());
+                dataSourceBuilder.username(dataSourceConfig.getUser());
                 dataSourceBuilder.password(decoderRing.getPassword());
 
             } catch (Exception e) {
